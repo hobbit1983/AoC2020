@@ -2,6 +2,8 @@ package aoc.test.twentytwenty;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Challenge5 {
@@ -49,13 +51,30 @@ public class Challenge5 {
             return;
         }
         int highestSeat = 0;
+        ArrayList seats = new ArrayList<>();
 		while (s.hasNextLine()) {
             int seat = Challenge5.getSeatID(s.nextLine());
+            seats.add(seat);
             if(seat > highestSeat)
                 highestSeat = seat;
         }
+        System.out.println("highest Seat:" + highestSeat);
+        Collections.sort(seats);
+        for(int a = 0; a<seats.size(); a++){
+            int seatID = (int)seats.get(a);
+            int nextSeatID = (int)seats.get(a+1);
 
-        System.out.println(highestSeat);
+
+            if(seatID +1 != nextSeatID && seatID+2 == nextSeatID) {
+                int yourSeat = seatID+1;
+                System.out.println("Your Seat is: " + yourSeat);
+                System.exit(0);
+
+            }
+        }
+        
+
+
     }
 
     
